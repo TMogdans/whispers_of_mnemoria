@@ -1,0 +1,84 @@
+title: ErsteBegegnung
+tags: 
+colorID: 0
+position: 44,-376
+---
+<<set $emotionalerZustand to 0>>
+
+Runa: Wo... wo bin ich? Was ist das für ein Ort?
+Gedächtnishüter: Sei gegrüßt, junges Mädchen. Du befindest dich in Mnemoria, dem Reich der Erinnerungen und Fantasie. Ich bin der Gedächtnishüter, Wächter des Waldes der Erinnerungen.
+Runa: Mnemoria? Ich verstehe nicht... wie bin ich hierhergekommen?
+Gedächtnishüter: Dein Herz hat dich hierher geführt, Runa. Die bedrohten Erinnerungen deiner geliebten Großmutter riefen nach Heilung und Schutz.
+-> "Woher kennst du meinen Namen und was weißt du über meine Großmutter?" [[Emotionaler Zustand verbessern]]
+    <<set $emotionalerZustand += 5>>
+    Gedächtnishüter: In Mnemoria sind die Erinnerungen und Bande der Liebe eng miteinander verwoben. Ich spüre die tiefe Zuneigung und Sorge in deinem Herzen, und sie flüstern mir deinen Namen zu.
+    Runa: Meine Großmutter... seit diese seltsame Krankheit begonnen hat, ihre Erinnerungen zu bedrohen, fühlt sich alles so zerbrechlich und verworren an. Ich habe Angst, sie zu verlieren.
+-> "Was meinst du mit 'bedrohten Erinnerungen'? Ich verstehe immer noch nicht ganz..." [[Emotionaler Zustand verschlechtern]]
+    <<set $emotionalerZustand -= 5>>
+    Gedächtnishüter: Sieh dich um, Runa. Der Wald der Erinnerungen ist ein Spiegelbild des Herzens deiner Großmutter. So wie die kostbaren Erinnerungen, die sie hütet, durch eine rätselhafte Krankheit bedroht werden, so leidet auch diese Welt unter einer wachsenden Dunkelheit.
+    Runa: Das ist schrecklich! Gibt es denn nichts, was ich tun kann, um die Erinnerungen meiner Großmutter und diesen wundersamen Ort zu beschützen?
+Gedächtnishüter: Es gibt Hoffnung, junges Mädchen. Mit der Kraft des magischen Pinsels kannst du die bedrohten Erinnerungen wiederherstellen und Mnemoria vor der um sich greifenden Dunkelheit bewahren.
+Runa: Der magische Pinsel? Was ist das und wo finde ich ihn?
+
+<<if $emotionalerZustand > 0>>
+    Runa denkt: Ich fühle mich zuversichtlich, dass ich einen Weg finden werde, meiner Großmutter zu helfen.
+<<elseif $emotionalerZustand < 0>>
+    Runa denkt: Ich bin mir nicht sicher, ob ich dieser Aufgabe gewachsen bin... aber ich muss es versuchen, für meine Großmutter.
+<<else>>
+    Runa denkt: Es wird nicht einfach, aber ich weiß, dass ich stark genug bin, um die Erinnerungen meiner Großmutter zu beschützen.
+<<endif>>
+
+[[Erklärung der Aufgabe|AufgabeErklaerung]]
+
+===
+
+title: AufgabeErklaerung
+tags: 
+colorID: 0
+position: 162,-132
+---
+Gedächtnishüter: Um den magischen Pinsel zu erschaffen, musst du drei heilige Artefakte aus den verschiedenen Bereichen dieses Waldes bergen: 
+Gedächtnishüter: Die magische Pinselborste aus dem Hain der flüsternden Blüten, 
+Gedächtnishüter: den Herzholzgriff aus der Schlucht der vergessenen Melodien und 
+Gedächtnishüter: den Tropfen Tinte der Inspiration aus dem Schrein der ungeschriebenen Geschichten.
+Runa: Aber wie finde ich diese Artefakte? Ich kenne mich hier doch überhaupt nicht aus...
+Gedächtnishüter: Lass dich von deinem Herzen leiten, Runa. Die Liebe und Weisheit deiner Großmutter werden dir den Weg weisen. 
+Gedächtnishüter: Drei Pfade führen von dieser Lichtung in einen anderen Bereich des Waldes.
+Gedächtnishüter: In jedem Bereich wirst du vor Herausforderungen gestellt, die deinen Verstand, dein Herz und deinen Geist auf die Probe stellen.
+Runa: Und was passiert, wenn ich den magischen Pinsel zusammengesetzt habe?
+Gedächtnishüter: Mit der Kraft des magischen Pinsels wirst du in der Lage sein, das zerstörte Portal am Rande der Lichtung zu reparieren. 
+Gedächtnishüter: Dieses Portal ist der einzige Weg aus dem Wald der Erinnerungen und führt dich zur nächsten Etappe deiner Reise in Mnemoria.
+Runa: Das Portal reparieren... verstehe. Aber was ist, wenn ich versage?
+Gedächtnishüter: Vertraue auf deine innere Stärke, Runa. Die Liebe deiner Großmutter und dein eigener Mut werden dich leiten. Solange du die Hoffnung bewahrst und an dich glaubst, gibt es nichts, was du nicht überwinden kannst.
+-> "Ich habe Angst, dass ich es nicht schaffen werde..." [[Emotionaler Zustand verschlechtern]]
+    <<set $emotionalerZustand -= 10>>
+    Gedächtnishüter: Hab Vertrauen in dich selbst, Runa. Du trägst die Stärke und den Mut deiner Großmutter in dir. Sie glaubt an dich, und ihre Liebe wird dich auf deinem Weg begleiten und beschützen. [[Emotionaler Zustand verbessern]]
+        <<set $emotionalerZustand += 5>>
+-> "Ich bin bereit, alles zu tun, um die Erinnerungen meiner Großmutter zu beschützen." [[Emotionaler Zustand verbessern]]
+    <<set $emotionalerZustand += 10>>
+    Gedächtnishüter: Deine Entschlossenheit ist bewundernswert, Runa. Halte an diesem Gefühl fest, wenn die Reise schwierig wird. 
+
+===
+
+title: Hinweise
+tags:
+colorID: 0
+position: -183,-130
+---
+Gedächtnishüter: Ja, mein Kind?
+-> Gedächtnishüter, hast du vielleicht einen Hinweis, wie ich das Rätsel im Hain der flüsternden Blüten lösen kann?
+    Gedächtnishüter: Ah, das Rätsel der Licht- und Farbsequenzen. Sieh genau hin, Runa. Jedes Blütenblatt trägt ein einzigartiges Muster in sich. Die Anordnung der Podeste spiegelt die Ordnung dieser Muster wider. Finde die Verbindung und du wirst den Weg zur magischen Pinselborste finden. Vertraue auf deine Beobachtungsgabe und dein Gespür für Schönheit.
+    Runa: Ich danke dir. Deine Worte erleuchten meinen Pfad.
+        [[Verzweigung]]
+-> Gedächtnishüter, ich bin mir nicht sicher, wie ich die vergessene Melodie in der Schlucht wiederherstellen soll. Kannst du mir einen Rat geben?
+    Gedächtnishüter: Die vergessene Melodie ist tief in deinem Herzen verankert, Runa. Die schwebenden Noten in der Schlucht tragen die Fragmente des Liedes in sich. Achte auf ihre Farben und Formen, denn sie sind der Schlüssel. Lass die Erinnerung an die Liebe deiner Großmutter deine Schritte leiten und die Melodie wird sich dir offenbaren.
+    Runa: Deine Worte wärmen mein Herz. Ich werde auf sie lauschen und die Melodie finden.
+        [[Verzweigung]]
+-> Die unvollendete Geschichte meiner Großmutter zu ergänzen erscheint mir wie eine große Aufgabe. Hast du einen Rat, wie ich die richtigen Worte finden kann, Gedächtnishüter?
+    Gedächtnishüter: Die Worte, die du suchst, sind bereits in dir, Runa. Die Objekte auf dem Tisch deiner Großmutter sind Fragmente ihrer Geschichte, Teile ihres Herzens. Betrachte jedes von ihnen als einen Baustein des Narrativs. Lass dein Einfühlungsvermögen dich leiten, um ihre Bedeutung zu entschlüsseln und ihren Platz in der Geschichte zu finden. Vertraue auf die Kraft deiner Vorstellungskraft.
+    Runa: Ich spüre die Wahrheit in deinen Worten. Ich werde meinem Herzen folgen und die Geschichte meiner Großmutter ehren.
+        [[Verzweigung]]
+Runa: Danke für deine Führung, Gedächtnishüter. Ich werde mein Bestes geben, um die Artefakte zu finden und den magischen Pinsel herzustellen. Ich mache mich jetzt auf den Weg.
+Gedächtnishüter: Mögen die Liebe und die Erinnerungen deiner Großmutter dich stets leiten und beschützen, Runa. Gehe nun und stelle die bedrohten Fragmente von Mnemoria und dem Herzen deiner Großmutter wieder her. Ich werde hier in der Lichtung der Erinnerungen auf deine Rückkehr warten. [[Emotionaler Zustand verbessern]]
+
+===

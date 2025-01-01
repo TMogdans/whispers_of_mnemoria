@@ -1,0 +1,225 @@
+title: Prolog
+tags: 
+colorID: 0
+position: -23,-244
+---
+<<if visited("RunasZimmer") is false>>
+    <<jump RunasZimmer>>
+<<elseif visited("Küche") is false>>
+    <<jump Küche>>
+<<else>>
+    <<jump Esszimmer>>
+<<endif>>
+
+===
+
+title: RunasZimmer
+tags: 
+colorID: 0
+position: 307,-235
+---
+Runa: Endlich wieder zu Hause bei Oma! Ich liebe es hier - all die Bücher, Schätze und Geheimnisse, die darauf warten entdeckt zu werden...
+
+<<tutorial "MovementTutorial">>
+
+<<set $exploredRoom to true>>
+
+Runa: So viele Erinnerungen und Träume festgehalten auf diesen Seiten. Ich frage mich, welche neuen Abenteuer mich erwarten...
+
+Runa: Oma und ich haben so viele wunderbare Erinnerungen zusammen. Unsere Abenteuer, die Geschichten die sie mir erzählt hat - einfach magisch! 
+
+Runa: Oh, ich sehe, dass Oma mir ein neues Rätsel auf meinem Schreibtisch hinterlassen hat! Sie weiß genau, wie sehr ich es liebe, Geheimnisse zu lüften.
+
+<<puzzle "SchreibtischRätsel">>
+
+<<set $solvedPuzzle to true>>
+
+Großmutter: Runa, Liebes, bist du das? Komm doch in die Küche, ich könnte deine Hilfe beim Abendessen gebrauchen!
+
+Runa: Ich komme, Oma!
+
+<<tutorial "JournalTutorial">>
+
+<<if $exploredRoom and $solvedPuzzle>>
+    [[Küche]]
+<<else>>
+    Runa: Ich sollte mich noch etwas hier umsehen, bevor ich zu Oma gehe...
+    [[RunasZimmer]]
+<<endif>>
+
+===
+
+title: Küche
+tags:
+colorID: 0
+position: -22,-17
+---
+Großmutter: Da bist du ja, mein Schatz. Lass uns gemeinsam den Tisch für unser Abendessen decken.
+
+Runa: Natürlich, Oma! Was gibt es denn heute Leckeres?
+
+Großmutter: Ich dachte, wir machen uns einen schönen Eintopf nach dem geheimen Rezept unserer Familie. Mit viel Gemüse und Liebe gekocht, so wie du es magst.
+
+Runa: Mmmm, das klingt fantastisch! Sag mir, was ich tun kann, um dir zu helfen.
+
+Großmutter: Lass mich kurz überlegen... könntest du bitte die Suppenteller, Löffel und Servietten aus dem Schrank holen und auf dem Tisch arrangieren? Du weißt ja, wie es geht.
+
+<<inventory "GeschirrAufgabe">>
+
+Runa: So, bitte sehr! Teller, Löffel und Servietten sind liebevoll platziert. Fehlt noch etwas?
+
+Großmutter: Das sieht wunderbar aus, meine Liebe. Lass mich nur noch schnell die Kerzen anzünden, dann ist alles perfekt für einen gemütlichen Abend. 
+
+<<set $candles to true>>
+
+Großmutter: So, und nun lass uns essen und uns über deinen Tag unterhalten. Ich bin schon sehr gespannt, was du heute wieder alles erlebt hast!
+
+Runa: Oh ja, ich kann es kaum erwarten dir zu erzählen! Und ich freue mich schon riesig auf deine köstliche Suppe und unsere Geschichten.
+
+[[Abendessen]]
+
+===
+
+title: Abendessen
+tags: 
+colorID: 0
+position: -17,184
+---
+<<if $candles is true>>
+    <<set $introComplete to true>>
+    Runa: Mmm, Oma, der Eintopf riecht himmlisch! Lass es uns uns schmecken.
+    Großmutter: Guten Appetit, mein Schatz! Nun erzähl, was hat mein kleiner Abenteurer heute so erlebt?
+    -> Ich habe ein neues Buch über ferne Länder begonnen! Es ist so spannend!
+        Runa: Die Geschichten und Bilder haben mich in eine ganz andere Welt entführt. Ich wünschte, ich könnte selbst solche Abenteuer erleben...
+        Großmutter: Ah, die Magie der Bücher! Sie öffnen uns Türen zu unbekannten Orten und Möglichkeiten. Glaube mir, eines Tages wirst du deine eigenen unvergesslichen Reisen unternehmen.
+    -> In der Schule haben wir heute etwas über die Sterne und Planeten gelernt. Es ist so faszinierend!
+        Runa: Ich kann es kaum erwarten, heute Nacht die Sterne zu beobachten. Vielleicht kann ich einige der Konstellationen entdecken, über die wir gelernt haben!  
+        Großmutter: Das klingt wunderbar, Liebes! Weißt du, dein Großvater war ein begeisterter Sternengucker. Er hat mir beigebracht, wie man den Nachthimmel liest. Vielleicht können wir später zusammen die Sterne betrachten und ich erzähle dir mehr über ihn.
+    Runa: Oma, erinnerst du dich an die Geschichte, die du mir gestern angefangen hast zu erzählen? Über das geheimnisvolle Land Mnemoria?
+    Großmutter: Mnemoria? Ja, ich erinnere mich dunkel... aber die Details sind etwas verschwommen. Tut mir leid, Liebes, mein Gedächtnis spielt mir in letzter Zeit manchmal Streiche.
+    Runa: Kein Problem, Oma. Ich liebe es einfach, dir zuzuhören und in die Welten einzutauchen, die du erschaffst. Egal, ob du dich an alles erinnern kannst oder nicht.
+    Großmutter: Du bist so verständnisvoll, mein Schatz. Ich verspreche, heute Abend versuche ich mich an so viel wie möglich von der Geschichte zu erinnern, wenn ich sie dir erzähle.
+    Runa: Das wäre wunderbar, Oma! Ich kann es kaum erwarten, mehr über Mnemoria zu erfahren und was für Abenteuer dort auf einen warten!
+    <<set $concernedAboutGrandma to true>>
+    [[GuteNachtGeschichte]]
+<<else>>
+    Runa: Ich sollte zuerst Oma in der Küche helfen, bevor wir essen...
+    [[Küche]]
+<<endif>>
+
+===
+
+title: GuteNachtGeschichte
+tags:
+colorID: 0
+position: -10,371
+---
+<<set $bedtimeStoryStarted to true>>
+Runa: (kuschelt sich in ihr Bett, gespannt auf die Geschichte)
+Großmutter: (setzt sich zu Runa ans Bett) Bist du bereit für die Geschichte, mein Schatz?
+Runa: Ja, Oma! Ich kann es kaum erwarten, mehr über Mnemoria zu hören!
+Großmutter: Also gut... (holt tief Luft und beginnt zu erzählen) Es war einmal, vor langer Zeit in Mnemoria, ein junger Träumer namens Luca...
+Großmutter: Luca hatte eine besondere Gabe - er konnte die vergessenen Erinnerungen der Menschen finden und wieder zum Leben erwecken. Er reiste durch das Land und half den Menschen, ihre wertvollsten Momente wiederzufinden...
+Großmutter: Eines Tages erreichte Luca ein Dorf am Rande des Vergessenen Waldes. Die Dorfbewohner waren in Trauer, denn der Wald hatte begonnen, ihre Erinnerungen zu verschlingen...
+Runa: Oh nein! Was hat Luca dann gemacht?
+Großmutter: Luca beschloss, in den Wald zu gehen und dem Geheimnis auf den Grund zu gehen. Tief im Herzen des Waldes fand er einen alten, knorrigen Baum, der von einer dunklen Aura umgeben war...
+Großmutter: Es stellte sich heraus, dass der Baum von einem bösartigen Geist besessen war, der sich von den Erinnerungen der Menschen ernährte. Luca wusste, dass er handeln musste, um das Dorf zu retten...
+Runa: Und dann? Wie hat Luca den Geist besiegt?
+Großmutter: Luca sammelte all seinen Mut und rief die mächtigsten und schönsten Erinnerungen herbei, die er auf seinen Reisen gefunden hatte. Er umgab den Baum mit einem Schild aus Licht und Liebe...
+Großmutter: Durch die Kraft der glücklichen Erinnerungen geschwächt, verließ der Geist den Baum und löste sich in der Luft auf. Die gestohlenen Erinnerungen kehrten zu den Dorfbewohnern zurück...
+Großmutter: Und so rettete Luca das Dorf und zeigte, dass die Macht der Erinnerung und der Liebe sogar die dunkelsten... die dunkelsten... (stockt und runzelt die Stirn)
+Runa: Die dunkelsten was, Oma? Geht es dir gut?
+<<set $grandmaConfused to true>>
+-> "Oma, ist alles in Ordnung? Du wirkst ein bisschen verwirrt..." 
+    Runa: Mach dir keine Sorgen, Oma. Die Geschichte war wunderschön bis hierher.
+    Großmutter: Tut mir leid, mein Engel. Ich scheine heute Abend ein bisschen durcheinander zu sein. Lass uns einfach noch etwas kuscheln, bevor du schlafen gehst.
+    Runa: (umarmt ihre Großmutter fest) Das ist eine gute Idee, Oma. Ich hab dich lieb.
+-> "Möchtest du, dass ich dir helfe, dich an den Rest der Geschichte zu erinnern?"
+    Runa: Wir können zusammen versuchen, uns an das Ende zu erinnern!
+    Großmutter: (lächelt müde) Das ist lieb von dir, Schatz, aber ich glaube, für heute Abend ist es besser, wenn wir die Geschichte hier belassen. Mein alter Kopf braucht wohl etwas Ruhe.
+    Runa: Okay, Oma. Wir können uns morgen zusammen den Rest ausdenken. Jetzt wünsche ich dir erstmal eine gute Nacht!
+Großmutter: Gute Nacht, mein Liebling. Schlaf schön und träume von wundersamen Abenteuern. (gibt Runa einen Kuss auf die Stirn und verlässt leise das Zimmer)
+<<set $goToSleep to true>>
+[[DerNächsteMorgen]]
+
+===
+
+title: DerNächsteMorgen
+tags:
+colorID: 0
+position: -1,551
+---
+<<set $nextMorning to true>>
+Runa: Was für ein schöner Morgen! Ich frage mich, ob Oma schon wach ist...
+Runa: Oma? Bist du schon aufgestanden?
+Runa: Hmm, sie scheint noch zu schlafen. Das ist ungewöhnlich, normalerweise ist sie um diese Zeit schon auf den Beinen.
+<<set $grandmaStillSleeping to true>>
+Runa: Vielleicht lasse ich sie noch etwas ausruhen. In der Zwischenzeit könnte ich ja nach etwas suchen, um ihr bei ihrer Vergesslichkeit zu helfen!
+Runa: Ich erinnere mich, dass Oma einmal erwähnt hat, dass es in diesem Haus viele Geheimnisse und verborgene Schätze gibt. Vielleicht finde ich ja etwas Nützliches!
+[[ErkundungDesHauses]]
+
+===
+
+title: ErkundungDesHauses
+tags:
+colorID: 0
+position: -123,727
+---
+<<set $exploreHouse to true>>
+Runa: (flüstert) Mal sehen, wo ich anfangen soll zu suchen... Vielleicht im Wohnzimmer? Oder in Omas altem Arbeitszimmer?
+-> Ich durchsuche das Wohnzimmer nach Hinweisen.
+    Runa: Oh, schau mal! Das sind Fotos von Oma und Opa auf ihren Reisen! Sie sahen so glücklich und voller Abenteuerlust aus...
+    Runa: Aber hier scheint nichts zu sein, was Oma direkt mit ihrem Gedächtnis helfen könnte. Lass mich woanders weiterschauen.
+-> Ich schleiche mich in Omas Arbeitszimmer und schaue mich um.
+    Runa: Wow, hier drin war ich schon ewig nicht mehr! All diese alten Bücher, Karten und seltsamen Artefakte...
+    Runa: Moment mal, was ist das? Das sieht interessant aus, als würde es vielleicht von Mnemoria handeln!
+    <<set $discoveredBook to true>>
+Runa: "Die Chroniken von Mnemoria - Eine Reise durch die Welten der Fantasie und Erinnerung"... Das klingt genau nach dem, was ich suche!
+Runa: Ich frage mich, ob dieses Buch Hinweise darauf enthält, wie man verlorene Erinnerungen zurückholt oder das Gedächtnis stärkt? Ich muss es genauer untersuchen!
+[[DasGeheimnnisvolleBuch]]
+
+===
+
+title: DasGeheimnnisvolleBuch
+tags:
+colorID: 0
+position: 143,724
+---
+<<set $examinedBook to true>>
+Runa: Wow, das ist faszinierend! Hier steht etwas über die magischen Eigenschaften von Mnemoria und wie sie mit unseren Erinnerungen verbunden sind!
+Runa: Und hier, eine Karte der verschiedenen Regionen von Mnemoria... Der Wald der Träume, die Höhlen der Reflektion, die Bibliothek des Vergessens...
+Runa: "Die heilenden Quellen von Mnemoria haben die Macht, verlorene Erinnerungen wiederherzustellen und den Geist zu erneuern..."
+Runa: Das ist es! Wenn ich einen Weg finden könnte, nach Mnemoria zu reisen, könnte ich vielleicht etwas finden, um Oma zu helfen!
+<<set $considerMnemoria to true>>
+Runa: Oh, was für ein wunderschönes Bild! Es sieht fast so aus, als würde es sich bewegen und schimmern...
+Runa: Warte, was passiert hier? Das Bild scheint zu leuchten und - oh! Es öffnet sich wie ein Portal! Was ist das für eine Magie?
+Runa: Ich glaube, es zieht mich hinein! Aaaahh!
+<<set $discoveredPortal to true>>
+[[ReiseNachMnemoria]]
+
+===
+
+title: BildDerEltern
+tags:
+colorID: 0
+position: 0,0
+---
+<<if not $lookedAtParentsPicture>>
+    <<set $lookedAtParentsPicture to true>>
+    Runa: Mama... Papa... Ich vermisse euch so sehr.
+    Runa: Es ist nicht fair, dass ihr so früh gehen musstet. Ich hätte euch so gerne besser kennengelernt.
+    Runa: Aber ich weiß, dass ihr immer bei mir seid, in meinem Herzen und in meinen Erinnerungen.
+    Runa: Oma erzählt mir oft Geschichten über euch - eure Abenteuer, eure Liebe, euren Mut. Durch sie lerne ich euch jeden Tag ein bisschen besser kennen.  
+    Runa: Ich hoffe, ich mache euch stolz, wo auch immer ihr jetzt seid. Ich verspreche, dass ich immer mutig und neugierig sein werde, genau wie ihr.
+    Runa: Ruht in Frieden, Mama und Papa. Ich trage euch immer in meinem Herzen.
+    <<set $runasMissingParents to true>>
+<<elseif $runasMissingParents and not $spokeToGrandmaAboutParents>>
+    Runa: Ich frage mich, ob Oma mir heute Abend mehr Geschichten über Mama und Papa erzählen kann...
+    Runa: Vielleicht hilft ihr das Reden über glückliche Erinnerungen auch mit ihrer Vergesslichkeit. Ich sollte sie später darauf ansprechen.
+    <<set $considerAskingGrandma to true>>
+<<else>>
+    Runa: (wirft dem Bild ihrer Eltern im Vorbeigehen einen liebevollen Blick zu)
+    Runa: Ich liebe euch, Mama und Papa.
+<<endif>>
+
+===

@@ -1,0 +1,11 @@
+Whenever I ask you writing a new file, make sure to
+- use markdown as the file format
+
+Whenever I ask you writing a new diagram, make sure to
+- use excalidraw json format for diagrams
+
+Whenever I ask you writing a new dialogue, make sure to
+- use yarn format
+- use pascal case for title
+- use snake case for variables
+- not describe doings, only spoken content or thoughts of characters
