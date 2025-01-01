@@ -9,3 +9,8 @@ Whenever I ask you writing a new dialogue, make sure to
 - use pascal case for title
 - use snake case for variables
 - not describe doings, only spoken content or thoughts of characters
+
+Whenever I ask you writing a new script, make sure to
+- use GDScript format for the Godot Engine
+- use camelCase for function names and variables
+- use common patterns for game development
