@@ -124,69 +124,70 @@ func choose_option(index: int) -> int:
 
 
 func _execute_command(command: String) -> int:
-    if command.begins_with("set"):
-        var parts = command.replace("set", "").strip_edges().split("to")
-        if parts.size() != 2:
+    var parts = command.split(" ", true, 1)
+    var command_name = parts[0]
+    var command_args = parts[1] if parts.size() > 1 else ""
+
+    match command_name:
+        "set":
+            return _execute_set_command(command_args)
+        "if":
+            return _execute_if_command(command_args)
+        "branch", "join":
+            return _execute_jump_command(command_name, command_args)
+        "loop":
+            return _execute_loop_command(command_args)
+        "repeat":
+            _current_node.repeating = true
+        "waitfor":
+            return _execute_waitfor_command(command_args)
+        _:
+            emit_signal("command_executed", command)
+
+    return _process_next_line()
+
+func _execute_set_command(args: String) -> int:
+    var parts = args.split("to", true, 1)
+    if parts.size() != 2:
             return ERR_INVALID_DATA
-        
-        var variable = parts[0].strip_edges()
-        var value = parts[1].strip_edges()
-        _variables[variable] = value
-    elif command.begins_with("if"):
-        var condition = command.replace("if", "").strip_edges()
-        var evaluation_result = _evaluate_condition(condition)
-        if evaluation_result is bool:
-            if not evaluation_result:
-                var process_result = _process_next_line()
-                if process_result != OK:
-                    return process_result
-        else:
-            return evaluation_result
-    elif command.begins_with("branch"):
-        var branch_destination = command.replace("branch", "").strip_edges()
-        var next_node = _parser.get_node(branch_destination)
-        if not next_node:
-            return ERR_DOES_NOT_EXIST
-        
-        _current_node = next_node
-        _current_line = 0
-        var process_result = _process_next_line()
-        if process_result != OK:
-            return process_result
-    elif command.begins_with("join"):
-        var join_destination = command.replace("join", "").strip_edges()
-        var next_node = _parser.get_node(join_destination)
-        if not next_node:
-            return ERR_DOES_NOT_EXIST
+
+    var variable = parts[0].strip_edges()
+    var value = parts[1].strip_edges()
+    _variables[variable] = value
+    return OK
+
+func _execute_if_command(condition: String) -> int:
+    var result = _evaluate_condition(condition)
+    if result is int:
+        return result
+    if not result:
+        return _process_next_line()
+    return OK
+
+func _execute_jump_command(jump_type: String, destination: String) -> int:
+    var next_node = _parser.get_node(destination.strip_edges())
+    if not next_node:
+        return ERR_INVALID_DATA
     
-        _current_node = next_node
-        _current_line = 0
-        var process_result = _process_next_line()
-        if process_result != OK:
-            return process_result
-    elif command.begins_with("loop"):
-        var loop_count = command.replace("loop", "").strip_edges().to_int()
-        if loop_count <= 0:
-            return ERR_INVALID_DATA
-        _current_node.loop_count = loop_count
-    elif command.begins_with("repeat"):
-        _current_node.repeating = true
-    elif command.begins_with("waitfor"):
-        var wait_for = command.replace("waitfor", "").strip_edges()
-        if wait_for == "input":
+    _current_node = next_node
+    _current_line = 0
+    return _process_next_line()
+
+func _execute_loop_command(args: String) -> int:
+    var loop_count = args.to_int()
+    if loop_count <= 0:
+        return ERR_INVALID_DATA
+    _current_node.loop_count = loop_count
+    return OK
+
+func _execute_waitfor_command(args: String) -> int:
+    match args:
+        "input":
             _current_node.wait_for_input = true
-        elif wait_for == "timer":
+        "timer":
             _current_node.wait_for_input = false
-        else:
+        _:
             return ERR_INVALID_DATA
-    else:
-        emit_signal("command_executed", command)
-    
-    if not command.begins_with("if") and not command.begins_with("branch") and not command.begins_with("join"):
-        var process_result = _process_next_line()
-        if process_result != OK:
-            return process_result
-    
     return OK
 
 
